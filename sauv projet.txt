@@ -1,0 +1,17 @@
+def getANewImage():
+    url = "https://api.unsplash.com/photos/random/?client_id=" + apiAccessKey
+    reponse = requests.get(url)
+    print("TODO : Enregistrer info dans bdd")
+    contenue = reponse.json()
+    print(contenue['links']['download'])
+    
+    #Récupération de l'image
+    urlImage = contenue['links']['download']
+    reponseImage = requests.get(urlImage)
+    print(reponseImage.text)
+    
+    #Enregistrement de la bdd
+    fichier = open("./images/test.txt", "a")
+    fichier.write(reponseImage.text)
+    fichier.close()
+    print("test")
